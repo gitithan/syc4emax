@@ -1,0 +1,7 @@
+#name : if ... end
+#group : definitions
+# key: if
+# --
+if ${1decision}
+  $0
+end
