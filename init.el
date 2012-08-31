@@ -21,7 +21,7 @@
 ;----------------------------------------------------------------------------
 ; Load configs for specific features and modes
 ;----------------------------------------------------------------------------
-(require 'init-modeline)
+;#(require 'init-modeline)
 
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
@@ -46,9 +46,9 @@
 (require 'init-recentf)
 (require 'init-ido)
 (require 'init-hippie-expand)
-(require 'init-windows)
+;#(require 'init-windows)
 (require 'init-sessions)
-(require 'init-fonts)
+;#(require 'init-fonts)
 (require 'init-mmm)
 ;(require 'init-growl)
 
@@ -65,7 +65,7 @@
 (require 'init-javascript)
 (require 'init-sh)
 (require 'init-php)
-(require 'init-org)
+;#(require 'init-org)
 (require 'init-nxml)
 (require 'init-css)
 (require 'init-haml)
@@ -80,17 +80,17 @@
 (require 'init-clojure)
 (require 'init-common-lisp)
 
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
+;#(when *spell-check-support-enabled*
+;#  (require 'init-spelling))
 
 (require 'init-marmalade)
 
 ;; Finally set up themes, after most possibly-customised faces have been defined
-(require 'init-themes) ; color-themes 6.6.1 has some problem
+;#(require 'init-themes) ; color-themes 6.6.1 has some problem
 ;; Chinese inut method
 (require 'init-org2blog)
 (require 'init-fill-column-indicator)
-(require 'init-yasnippet)
+;#(require 'init-yasnippet) ;;use self_init_file
 (require 'init-better-registers) ; C-x j - jump to register
 (require 'init-zencoding-mode) ;behind init-better-register to override C-j
 (require 'init-yari)
@@ -102,17 +102,17 @@
 (require 'init-csharp-mode)
 (require 'init-linum-mode)
 ;(require 'init-delicious) ;make startup slow, I don't use delicious in w3m
-(require 'init-emacs-w3m)
-(require 'init-eim)
+;#(require 'init-emacs-w3m)
+;#(require 'init-eim)
 (require 'init-thing-edit)
 (require 'init-which-func)
 (require 'init-keyfreq)
-(require 'init-gist)
-(require 'init-emacspeak)
+;#(require 'init-gist)
+;#(require 'init-emacspeak)
 (require 'init-pomodoro)
 (require 'init-undo-tree)
 (require 'init-moz)
-(require 'init-evil) ; use evil mode (vi key binding)
+;#(require 'init-evil) ; use evil mode (vi key binding)
 (require 'init-misc)
 (require 'init-ctags)
 ;;----------------------------------------------------------------------------
