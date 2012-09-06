@@ -1,10 +1,9 @@
-;;; pomodoro.el --- A timer for the Pomodoro Technique 
+;;; pomodoro.el --- A timer for the Pomodoro Technique
 ;;;   (http://www.pomodorotechnique.com)
-
-;; Copyright (C) 2010 Dave Kerschner (docgnome)
 
 ;; Author: Dave Kerschner <docgnome@docgno.me>
 ;; Created: Aug 25, 2010
+;; Version: 0.1
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -28,7 +27,7 @@
   :prefix "pomodoro-"
   :group 'tools)
 
-(defcustom pomodoro-work-time 20
+(defcustom pomodoro-work-time 25
   "Length of time in minutes for a work period"
   :group 'pomodoro
   :type 'integer)
@@ -55,6 +54,16 @@
 
 (defcustom pomodoro-break-start-message "Break time!"
   "Message show when a break period starts"
+  :group 'pomodoro
+  :type 'string)
+
+(defcustom pomodoro-break-start-sound "E:/estone/motoclass.mp3"
+  "Sound played when a break period starts"
+  :group 'pomodoro
+  :type 'string)
+
+(defcustom pomodoro-sound-player "mplayer"
+  "Music player used to play sounds"
   :group 'pomodoro
   :type 'string)
 
@@ -110,6 +119,7 @@
             (let ((p (if (and (not (= pomodoros 0))
                               (= (mod pomodoros pomodoro-nth-for-longer-break) 0))
                          (cons pomodoro-long-break-time pomodoro-long-break-start-message)
+                       (play-pomodoro-break-sound)
                        (cons pomodoro-break-time pomodoro-break-start-message))))
               (if (yes-or-no-p (cdr p))
                   (progn
@@ -125,10 +135,15 @@
     (setq pomodoro-mode-line-string (concat pomodoro-current-cycle (pomodoro-seconds-to-time time) " "))
     (force-mode-line-update)))
 
-(defun pomodoro-start ()
-  (interactive)
-  (pomodoro-set-start-time pomodoro-work-time)
-  (setq pomodoro-timer (run-with-timer 0 1 'pomodoro-tick)))
+(defun pomodoro-start (arg)
+  (interactive "P")
+  (let* ((timer (or (if (listp arg)
+			(car arg))
+		    arg
+		    pomodoro-work-time)))
+    (setq pomodoro-work-time timer)
+    (pomodoro-set-start-time pomodoro-work-time)
+    (setq pomodoro-timer (run-with-timer 0 1 'pomodoro-tick))))
 
 (defun pomodoro-stop ()
   (interactive)
@@ -137,6 +152,12 @@
   (setq pomodoro-current-cycle pomodoro-work-cycle)
   (force-mode-line-update))
 
+(defun play-pomodoro-break-sound ()
+  "Play sound for break"
+  (interactive)
+  (call-process pomodoro-sound-player nil 0 nil (expand-file-name pomodoro-break-start-sound)))
+
 (setq-default mode-line-format (cons '(pomodoro-mode-line-string pomodoro-mode-line-string) mode-line-format))
 
 (provide 'pomodoro)
+;;; pomodoro.el ends here
