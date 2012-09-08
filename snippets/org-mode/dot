@@ -1,0 +1,5 @@
+#dot : #+begin_src dot ... #+end_src
+# --
+#+begin_src dot :file $1 :cmdline -Kdot -Tpng
+$0
+#+end_src

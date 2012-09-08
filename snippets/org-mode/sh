@@ -1,0 +1,5 @@
+#sh: #+begin_src sh ... #+end_src
+# --
+#+begin_src sh :results output
+$0
+#+end_src
