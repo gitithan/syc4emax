@@ -57,7 +57,7 @@
   :group 'pomodoro
   :type 'string)
 
-(defcustom pomodoro-break-start-sound "E:/estone/motoclass.mp3"
+(defcustom pomodoro-break-start-sound "E:/estone/Spring.mp3"
   "Sound played when a break period starts"
   :group 'pomodoro
   :type 'string)
